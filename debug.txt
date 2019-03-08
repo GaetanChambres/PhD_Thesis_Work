@@ -1,0 +1,65 @@
+GTZAN standard, 100 epoch, batch 16
+data size : 25 000
+eval sur 200 avec batch 32
+
+res : Loss: 2.2244, accuracy: 0.5050
+
+------------------------------------
+same config mais avec data size :
+res : Loss: 3.8399, accuracy: 0.2500
+
+------------------------------------
+ICBHI database réduite, meme config
+data size : variable mais tets uniquement sur train avec split donc ok pour garder la plus grande taille
+eval same config too
+
+res : Loss: 1.4035, accuracy: 0.6038
+
+------------------------------------
+ICBHI database réduite config identique
+zero padding des data pour tout faire en size 10 000
+
+res : Loss: 0.9829, accuracy: 0.7547
+
+------------------------------------
+ICBHI database réduite config du modèle identique
+MAIS cette fois utilisaiton des deux sets distincts TRAIN et TEST
+avec un zero padding a 10 000
+
+Ca marche!!
+
+res : Loss: 3.8065, accuracy: 0.3355
+
+------------------------------------
+
+ICBHI database COMPLETE
+config du modèle identique
+avec un zero padding a 10 000
+
+ERREUR : processing both genre in train
+Processing 2152 songs in normal genre...
+Traceback (most recent call last):#####         ] 2% ETA:  0:04:19
+  File "test_model.py", line 227, in <module>
+    features_train, labels_train = generate_features_and_labels(0)
+  File "test_model.py", line 144, in generate_features_and_labels
+    features = extract_features_song(f)
+  File "test_model.py", line 69, in extract_features_song
+    result[i] = array[i]
+
+IndexError: index 10000 is out of bounds for axis 0 with size 10000
+
+------------------------------------
+------------------------------------
+------------------------------------
+------------------------------------
+CORRIGE:
+Loss: 2.8879, accuracy: 0.4442
+
+------------------------------------
+CORRIGE epoch = 1000
+bach train = 64
+bach eval = 16
+
+
+Loss: 5.6841, accuracy: 0.4096
+
