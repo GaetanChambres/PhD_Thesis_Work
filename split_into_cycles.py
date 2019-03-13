@@ -58,7 +58,7 @@ def ordered_files_list(directory):
 # Filename | start of resp. cycle | end of resp. cycle | label of cycle
 # for each cycle of each record in the given directory
 ###########################################################################
-def mining_info (directory,csv_file) :
+def mining_symptoms_info (directory,csv_file) :
     nb_files_in_dir = nb_files(directory)
     ordered_list = ordered_files_list(directory)
     for filename in ordered_list:
@@ -135,7 +135,7 @@ sample_save_place = directory+"splitted_into_cycles/"
 os.makedirs(sample_save_place, exist_ok=True)
 csv_output = sample_save_place+"info.csv"
 csv_info = open(csv_output, "w")
-mining_info(directory,csv_info)
+mining_symptoms_info(directory,csv_info)
 csv_info.close()
 
 
